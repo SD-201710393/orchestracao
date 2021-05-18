@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+    client:
+        build: ../client
+        command: npm start
+        ports: 
+            - "3000:3000"
+        volumes:
+            - ../client:/usr/app/client
+
+    nameserver:
+        build: ../nameserver
+        command: npm start
+        ports: 
+            - "3001:3001"
+        volumes:
+            - ../nameserver:/usr/app/nameserver
+                    
+    server:
+        build: ../server
+        command: npm start
+        ports: 
+            - "3002:3002"
+        volumes:
+            - ../server:/usr/app/server
+            
+    resourcemanager:
+        build: ../resourcemanager
+        command: npm start
+        ports: 
+            - "3003:3003"
+        volumes:
+            - ../resourcemanager:/usr/app/resourcemanager
+        
+    db:
+        image: mongo:4.2
+        container_name: db
+        restart: always
+        ports:
+            - "27017:27017"
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
