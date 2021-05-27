@@ -1,0 +1,3 @@
+build:
+    docker:
+        aula_sd: Dockerfile
